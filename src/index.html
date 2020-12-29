@@ -1,13 +1,101 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>JsTodoApp</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <meta charset="UTF-8">
+  <title>Todo App</title>
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src="js/lib/jquery-3.5.0.min.js"></script>
+  <script src="js/main.js" type="module"></script>
+
 </head>
 <body>
-  <app-root></app-root>
+<header>
+  <h1>Todo Application</h1>
+  <p data-auth="true"><span data-field="user.name"></span> |  <a href="#/logout">Logout</a></p>
+</header>
+
+<main>
+  <p>Loading, please wait...</p>
+</main>
+
+<footer>
+  <p>&copy; 2020</p>
+</footer>
+
+<!-- TEMPLATES -->
+<template id="tpl-login">
+  <div>
+    <h2>Login</h2>
+    <form>
+      <label>Name</label>
+      <input name="username">
+      <label>Password</label>
+      <input name="password" type="password">
+      <button data-action="login" class="primary">Login</button> <button data-action="register" class="secondary">Register</button>
+    </form>
+    <p data-field="error" class="message danger"></p>
+  </div>
+</template>
+
+<template id="tpl-todos">
+  <div>
+    <h2>My Todos</h2>
+    <ul></ul>
+    <p><a href="#/add-todo">&raquo; Add Todo</a></p>
+  </div>
+</template>
+
+<template id="tpl-todos-item">
+  <li>
+    <a data-action="toggle-completed" href="#" class="icon success">&#x2713;</a>
+    <span class="todo-title"></span>
+    <a data-action="toggle-important" href="#" class="icon info"></a>
+    <span class="actions">
+				<a data-action="edit" href="#" class="icon">&#x270e;</a>
+				<a data-action="delete" href="#"  class="icon danger">&#x2717;</a>
+			</span>
+  </li>
+</template>
+
+<template id="tpl-add-todo">
+  <div>
+    <h2>Add Todo</h2>
+    <form>
+      <label>Title<sup>*</sup></label>
+      <input name="title" required>
+      <label>Category</label>
+      <input name="category">
+      <label>Due Date</label>
+      <input name="date" type="date">
+      <button data-action="add" class="primary">Add</button> <button data-action="cancel" class="secondary">Cancel</button>
+    </form>
+    <p data-field="error"></p>
+  </div>
+</template>
+
+<template id="tpl-edit-todo">
+  <div>
+    <h2>Edit Todo</h2>
+    <form>
+      <label>Title<sup>*</sup></label>
+      <input name="title" required>
+      <label>Category</label>
+      <input name="category">
+      <label>Due Date</label>
+      <input name="date" type="date">
+      <button data-action="save" class="primary">Save</button> <button data-action="cancel" class="secondary">Cancel</button>
+    </form>
+    <p data-field="error" class="message danger"></p>
+  </div>
+</template>
+
+<template id="tpl-logout">
+  <div>
+    <h2>Und Tschüss</h2>
+    <p><a href="#/">Back to Login</a></p>
+  </div>
+</template>
+
 </body>
 </html>
